@@ -4,6 +4,12 @@ inputs:
   node-version:
     description: "Node version"
     required: true
+  langchain-api-key:
+    description: "Langchain"
+    required: true
+  openai-api-key:
+    description: "OpenAI API key"
+    required: false
 runs:
   using: "composite"
   steps:
@@ -28,10 +34,5 @@ runs:
       working-directory: js
       env:
         LANGCHAIN_TRACING_V2: "true"
-        LANGCHAIN_***REMOVED***: ${{ secrets.LANGCHAIN_***REMOVED*** }}
-
-
-    - name: Run JS integration tests
-      run: yarn test:integration
-      shell: bash
-      working-directory: js
+        LANGCHAIN_***REMOVED***: ${{ inputs.langchain-api-key }}
+        OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
