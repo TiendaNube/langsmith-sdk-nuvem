@@ -37,6 +37,6 @@ runs:
         LANGCHAIN_TRACING_V2: "true"
         LANGCHAIN_***REMOVED***: ${{ inputs.langchain-api-key }}
         OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
-      run: make integration_tests
+      run: make integration_tests_fast
       shell: bash
       working-directory: python
