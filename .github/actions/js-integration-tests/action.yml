@@ -7,6 +7,9 @@ inputs:
   langchain-api-key:
     description: "Langchain"
     required: true
+  langchain-endpoint:
+    description: "LangSmith Endpoint"
+    required: true
   openai-api-key:
     description: "OpenAI API key"
     required: false
@@ -34,5 +37,6 @@ runs:
       working-directory: js
       env:
         LANGCHAIN_TRACING_V2: "true"
+        LANGCHAIN_ENDPOINT: ${{ inputs.langchain-endpoint }}
         LANGCHAIN_***REMOVED***: ${{ inputs.langchain-api-key }}
         OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
