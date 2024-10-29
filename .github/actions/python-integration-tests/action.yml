@@ -44,7 +44,7 @@ runs:
       env:
         LANGCHAIN_TRACING_V2: "true"
         LANGCHAIN_ENDPOINT: https://beta.api.smith.langchain.com
-        LANGCHAIN_***REMOVED***: ${{ inputs.langchain-api-key }}
+        LANGCHAIN_***REMOVED***: ${{ inputs.langchain-api-key-beta }}
         OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
       run: make integration_tests_fast
       shell: bash
