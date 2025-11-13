@@ -76,6 +76,7 @@ jobs:
           langchain-api-key-prod: ${{ secrets.LANGSMITH_***REMOVED***_PROD }}
           openai-api-key: ${{ secrets.OPENAI_***REMOVED*** }}
           anthropic-api-key: ${{ secrets.ANTHROPIC_***REMOVED*** }}
+          gemini-api-key: ${{ secrets.GEMINI_***REMOVED*** }}
           test-type: ${{ matrix.test-type }}
 
   js_integration_test:

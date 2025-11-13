@@ -16,6 +16,9 @@ inputs:
   anthropic-api-key:
     description: "Anthropic API key"
     required: false
+  gemini-api-key:
+    description: "Gemini API key"
+    required: false
   test-type:
     description: "Type of test to run (integration, doctest, evals, or all)"
     required: false
@@ -48,6 +51,8 @@ runs:
         LANGSMITH_***REMOVED***: ${{ inputs.langchain-api-key-beta }}
         OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
         ANTHROPIC_***REMOVED***: ${{ inputs.anthropic-api-key }}
+        GEMINI_***REMOVED***: ${{ inputs.gemini-api-key }}
+        GOOGLE_***REMOVED***: ${{ inputs.gemini-api-key }}
         LANGSMITH_TEST_CACHE: tests/cassettes
       run: make integration_tests_fast
       shell: bash
@@ -61,6 +66,8 @@ runs:
         LANGSMITH_***REMOVED***: ${{ inputs.langchain-api-key-prod }}
         OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
         ANTHROPIC_***REMOVED***: ${{ inputs.anthropic-api-key }}
+        GEMINI_***REMOVED***: ${{ inputs.gemini-api-key }}
+        GOOGLE_***REMOVED***: ${{ inputs.gemini-api-key }}
         LANGSMITH_TEST_CACHE: tests/cassettes
       run: make doctest
       shell: bash
@@ -74,6 +81,8 @@ runs:
           LANGSMITH_***REMOVED***: ${{ inputs.langchain-api-key-beta }}
           OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
           ANTHROPIC_***REMOVED***: ${{ inputs.anthropic-api-key }}
+          GEMINI_***REMOVED***: ${{ inputs.gemini-api-key }}
+          GOOGLE_***REMOVED***: ${{ inputs.gemini-api-key }}
           LANGSMITH_TEST_CACHE: tests/cassettes
       run: make evals
       shell: bash
