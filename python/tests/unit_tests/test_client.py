@@ -2904,16 +2904,24 @@ def test_pull_prompt(
         session=mock_session,
         info=info,
     )
-    with mock.patch.dict(
-        "os.environ",
-        {
-            "ANTHROPIC_***REMOVED***": "test_anthropic_key",
-            "OPENAI_***REMOVED***": "test_openai_key",
-        },
-    ):
+    secrets = {
+        "ANTHROPIC_***REMOVED***": "test_anthropic_key",
+        "OPENAI_***REMOVED***": "test_openai_key",
+    }
+    try:
         result = client.pull_prompt(
             prompt_identifier=manifest_data["repo"], include_model=include_model
         )
+    except ValueError as e:
+        if include_model:
+            assert "no secrets were provided" in str(e)
+            result = client.pull_prompt(
+                prompt_identifier=manifest_data["repo"],
+                include_model=include_model,
+                secrets=secrets,
+            )
+        else:
+            raise e
     expected_prompt_type = (
         StructuredPrompt if manifest_type == "structured" else ChatPromptTemplate
     )
@@ -2988,18 +2996,30 @@ def test_pull_and_push_prompt(
         with mock.patch.dict(
             "os.environ",
             {
-                "ANTHROPIC_***REMOVED***": "test_anthropic_key",
-                "OPENAI_***REMOVED***": "test_openai_key",
                 "LANGSMITH_***REMOVED***": "fake_api_key",
                 "LANGSMITH_ENDPOINT": "http://localhost:1984",
             },
             clear=True,
         ):
             # Pull the prompt
-            pulled_prompt = client.pull_prompt(
-                prompt_identifier=manifest_data["repo"], include_model=include_model
-            )
-
+            secrets = {
+                "ANTHROPIC_***REMOVED***": "test_anthropic_key",
+                "OPENAI_***REMOVED***": "test_openai_key",
+            }
+            try:
+                pulled_prompt = client.pull_prompt(
+                    prompt_identifier=manifest_data["repo"], include_model=include_model
+                )
+            except ValueError as e:
+                if include_model:
+                    assert "no secrets were provided" in str(e)
+                    pulled_prompt = client.pull_prompt(
+                        prompt_identifier=manifest_data["repo"],
+                        include_model=include_model,
+                        secrets=secrets,
+                    )
+                else:
+                    raise e
             # Capture the dumps call when pushing
             pushed_manifest = None
 
