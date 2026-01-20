@@ -40,4 +40,5 @@ runs:
         LANGSMITH_ENDPOINT: https://beta.api.smith.langchain.com
         LANGSMITH_***REMOVED***: ${{ inputs.langchain-api-key-beta }}
         OPENAI_***REMOVED***: ${{ inputs.openai-api-key }}
+        ANTHROPIC_***REMOVED***: ${{ inputs.anthropic-api-key }}
         GEMINI_***REMOVED***: ${{ inputs.gemini-api-key }}

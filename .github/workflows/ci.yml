@@ -481,6 +481,7 @@ jobs:
           langchain-api-key-beta: ${{ secrets.LANGSMITH_***REMOVED***_BETA }}
           openai-api-key: ${{ secrets.OPENAI_***REMOVED*** }}
           gemini-api-key: ${{ secrets.GEMINI_***REMOVED*** }}
+          anthropic-api-key: ${{ secrets.ANTHROPIC_***REMOVED*** }}
 
   js-vitest-eval:
     name: "JS Vitest Runner Test"
